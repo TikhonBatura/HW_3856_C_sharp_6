@@ -1,4 +1,6 @@
-﻿Start();
+﻿using System.Drawing;
+
+Start();
 
 void Start()
 {
@@ -6,13 +8,13 @@ void Start()
     {
        
 
-        System.Console.WriteLine("41) Задача 41: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.");
-        System.Console.WriteLine("43) Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.");
-        System.Console.WriteLine("44) Задача 44:выведите первые N чисел Фибоначчи.");
+        System.Console.WriteLine("\n41) Задача 41: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.");
+        System.Console.WriteLine("\n43) Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.");
+        System.Console.WriteLine("\n44) Задача 44:выведите первые N чисел Фибоначчи.");
        
-        System.Console.WriteLine("0) End");
+        System.Console.WriteLine("\n0) End");
 
-        int numTask = EnterNumber("task");
+        int numTask = EnterNumber("\ntask");
 
         switch (numTask)
         {
@@ -78,7 +80,36 @@ void Start()
 
 
 
-                default: System.Console.WriteLine("error"); break;
+                
+
+
+                case 44:
+                Console.Clear();
+
+                // Задача 44: выведите первые N чисел Фибоначчи. Первые два числа Фибоначчи: 0 и 1.
+                // Если N = 5
+                // --> 0 1 1 2 3
+                // Если N = 3
+                // --> 0 1 1
+                // Если N = 7
+                // --> 0 1 1 2 3 5 8
+
+                Console.WriteLine($"\n\nЗадача 44");
+
+                int numN = EnterNumber ("Please enter N nummber.");
+
+                Console.Write($"0\t");  
+
+                for (int i = 1; i < numN; i++)
+                {
+                Console.Write($"{Fibonachi(i)}\t");
+                }
+            
+                Console.WriteLine();
+                break;
+
+            default: System.Console.WriteLine("error"); break;
+
         }       
     }
 }
@@ -103,7 +134,7 @@ int EnterNumber(string number) // функция для ввода целочи�
             return res;
         }
 
-void crossPoint (double b1, double k1, double b2, double k2)
+void crossPoint (double b1, double k1, double b2, double k2) // функция по определению точки пересечения
 {
     double x = (b2 - b1)/(k1 - k2);
     double y = k1*x + b1;
@@ -117,3 +148,8 @@ void crossPoint (double b1, double k1, double b2, double k2)
     Console.WriteLine($"\nPoint of cross is ({x};{y})\n");
 }
 
+int Fibonachi (int n) // функция по посторению ряда чисел фибоначи
+{
+    if (n == 1 || n == 2) return 1;
+    else return Fibonachi(n-1) + Fibonachi(n-2);
+}
